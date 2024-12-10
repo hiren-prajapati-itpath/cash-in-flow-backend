@@ -7,7 +7,8 @@ export const register = {
     lastName: Joi.string().required(),
     email: Joi.string().required().email(),
     password: Joi.string().required().custom(password),
-    role: Joi.string().required(),
+    role: Joi.string().optional(),
+    referralSource: Joi.string().optional(),
   }),
 };
 

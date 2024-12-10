@@ -10,9 +10,16 @@ const register = catchAsync(async (req, res) => {
 const login = catchAsync(async (req, res) => {
   const { email, password } = req.body;
   const user = await loginUserWithEmailAndPassword(email, password);
+  const tokenData = {
+    id: user?.id,
+    firstName: user?.firstName,
+    lastName: user?.lastName,
+    email: user?.email,
+    role: user?.role,
+  };
 
-  const token = generateToken(user);
-  return res.successResponse(STATUS_CODES.OK, { data: { token }, message: 'Login successful !' });
+  const token = generateToken(tokenData);
+  return res.successResponse(STATUS_CODES.OK, { data: { token }, message: 'Login successful!' });
 });
 
 export default {

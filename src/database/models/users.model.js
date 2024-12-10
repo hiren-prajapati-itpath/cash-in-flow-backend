@@ -2,67 +2,76 @@ import { hashPassword, comparePassword } from '../../services/bcrypt.service.js'
 import { Paginate } from '../plugins/index.js';
 import { systemRoles } from '../../shared/constants/constant.js';
 
-export default (sequelize, DataTypes) => {
+export default (sequelize, Sequelize) => {
   const Users = sequelize.define('Users', {
     id: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
-      type: DataTypes.INTEGER,
+      type: Sequelize.INTEGER,
     },
     firstName: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       allowNull: false,
     },
     lastName: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       allowNull: false,
     },
     email: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       allowNull: false,
       unique: true,
       validate: {
         isEmail: true,
       },
     },
+    password: {
+      type: Sequelize.STRING,
+      allowNull: true,
+    },
     role: {
-      type: DataTypes.ENUM(...Object.values(systemRoles)),
-      allowNull: false,
+      type: Sequelize.ENUM(...Object.values(systemRoles)),
+      allowNull: true,
+      defaultValue: systemRoles.superAdmin,
+    },
+    referralSource: {
+      type: Sequelize.STRING,
+      allowNull: true,
     },
     dob: {
-      type: DataTypes.DATE,
-      allowNull: false,
+      type: Sequelize.DATE,
+      allowNull: true,
     },
     country: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: Sequelize.STRING,
+      allowNull: true,
     },
     city: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: Sequelize.STRING,
+      allowNull: true,
     },
     timeZone: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: Sequelize.STRING,
+      allowNull: true,
     },
     taxId: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       allowNull: true,
     },
     personalAddress: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: Sequelize.STRING,
+      allowNull: true,
     },
     postalAddress: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       allowNull: true,
     },
     profileImage: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       allowNull: true,
     },
-    lastLogin: { type: DataTypes.DATE },
+    lastLogin: { type: Sequelize.DATE, allowNull: true },
   });
 
   // Hash password before creating a new user

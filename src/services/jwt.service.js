@@ -4,10 +4,11 @@ import { jwt as _jwt } from '../config/config.js';
 
 const { sign, verify } = pkg;
 
-const secretKey = _jwt.secret;
+const { secretKey, expiresIn } = _jwt;
+
 const generateToken = (user) => {
   try {
-    const token = sign(user, secretKey);
+    const token = sign(user, secretKey, { expiresIn });
     return token;
   } catch (error) {
     return error;

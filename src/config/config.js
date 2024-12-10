@@ -38,7 +38,8 @@ export const env = envVars.NODE_ENV;
 export const port = envVars.PORT;
 
 export const jwt = {
-  secret: envVars.JWT_SECRET,
+  secretKey: envVars.JWT_SECRET,
+  expiresIn: envVars.EXPIRE_TIME || '24h',
 };
 
 export const email = {
