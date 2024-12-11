@@ -39,6 +39,23 @@ export default (sequelize, Sequelize) => {
       type: Sequelize.STRING,
       allowNull: true,
     },
+    otp: {
+      type: Sequelize.STRING,
+      allowNull: true,
+    },
+    otpExpiration: {
+      type: Sequelize.DATE,
+      allowNull: true,
+    },
+    isVerified: {
+      type: Sequelize.TINYINT(1),
+      allowNull: false,
+      defaultValue: 0,
+    },
+    passwordResetKey: {
+      type: Sequelize.STRING,
+      allowNull: true,
+    },
     dob: {
       type: Sequelize.DATE,
       allowNull: true,

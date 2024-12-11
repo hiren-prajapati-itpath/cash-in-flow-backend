@@ -26,7 +26,7 @@ const generateVerificationToken = (user) => {
 
 const generateResetPassToken = (email) => {
   try {
-    const token = sign({ email }, secretKey, { expiresIn: '15m' });
+    const token = sign(email, secretKey, { expiresIn: '15m' });
     return token;
   } catch (error) {
     return null;

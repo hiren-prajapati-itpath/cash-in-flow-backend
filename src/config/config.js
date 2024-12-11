@@ -40,6 +40,7 @@ export const port = envVars.PORT;
 export const jwt = {
   secretKey: envVars.JWT_SECRET,
   expiresIn: envVars.EXPIRE_TIME || '24h',
+  resetPasswordExpirationMinutes: envVars.JWT_RESET_PASSWORD_EXPIRATION_MINUTES || '10m',
 };
 
 export const email = {
@@ -60,6 +61,6 @@ export const _db = {
   password: envVars.DB_PASSWORD,
   database: envVars.DB_NAME,
   port: envVars.DB_PORT,
-  dialect: 'postgres',
+  dialect: 'mysql',
   logging: false,
 };

@@ -12,6 +12,11 @@ export const register = {
   }),
 };
 
+export const varifyRegister = {
+  email: Joi.string().required().email(),
+  otp: Joi.string().required(),
+};
+
 export const login = {
   body: Joi.object().keys({
     email: Joi.string().required(),
@@ -31,8 +36,9 @@ export const headerSchema = {
   }).unknown(),
 };
 
-export default {
-  register,
-  login,
-  headerSchema,
+export const changePassword = {
+  body: Joi.object().keys({
+    oldPassword: Joi.string().required(),
+    newPassword: Joi.string().required().custom(password),
+  }),
 };

@@ -10,7 +10,7 @@ const transporter = createTransport({
   },
 });
 
-const sendEmail = async (mailOptions) => {
+export const sendEmail = async (mailOptions) => {
   return transporter.sendMail(mailOptions);
 };
 

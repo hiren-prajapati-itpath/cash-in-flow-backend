@@ -44,11 +44,3 @@ export const deleteUser = {
     userId: Joi.string().custom(validateUUID),
   }),
 };
-
-export default {
-  createUser,
-  getUsers,
-  getUser,
-  updateUser,
-  deleteUser,
-};
