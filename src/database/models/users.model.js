@@ -91,6 +91,15 @@ export default (sequelize, Sequelize) => {
     lastLogin: { type: Sequelize.DATE, allowNull: true },
   });
 
+  Users.associate = (models) => {
+    Users.hasMany(models.projects, {
+      foreignKey: 'userId',
+    });
+    Users.hasMany(models.disputes, {
+      foreignKey: 'raisedBy',
+    });
+  };
+
   // Hash password before creating a new user
   Users.beforeCreate(async (user) => {
     if (user.password) {

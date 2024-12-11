@@ -4,12 +4,33 @@ export const systemRoles = {
   freelancer: 'freelancer',
 };
 
-export const status = {
-  pending: 'pending',
-  active: 'active',
-  rejected: 'rejected',
-  blocked: 'blocked',
-  inactive: 'inactive',
+export const projectStatus = {
+  draft: 'draft',
+  invited: 'invited',
+  inprocess: 'inprocess',
+  dispute: 'dispute',
+  approved: 'approved',
   completed: 'completed',
-  cancelled: 'cancelled',
+};
+
+export const milestoneStatus = {
+  funded: 'funded',
+  inprocess: 'inprocess',
+  approved: 'approved',
+  completed: 'completed',
+  submitted: 'submitted',
+  revisions: 'revisions',
+};
+
+export const disputeStatus = {
+  starting: 'starting',
+  close: 'close',
+  indiscussions: 'indiscussions',
+};
+
+export const disputeType = {
+  payment: 'payment',
+  timeline: 'timeline',
+  quality: 'quality',
+  other: 'other',
 };

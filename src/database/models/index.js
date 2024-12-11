@@ -1,6 +1,11 @@
 import Sequelize from 'sequelize';
 import { _db } from '../../config/config.js';
-import usersModel from './users.model.js'; // Directly import your models
+import users from './users.model.js'; // Directly import your models
+import projects from './projects.model.js';
+import projectDocuments from './projectDocuments.model.js';
+import milestones from './milestones.model.js';
+import disputes from './disputes.model.js';
+
 import logger from '../../config/logger.js';
 
 const db = {};
@@ -25,17 +30,22 @@ const syncDB = async () => {
     await dbConnection.sync({ alter: true, force: false });
     logger.info('🔁 Database Synchronized.');
   } catch (err) {
-    logger.error('Failed to sync db:', err.message);
+    logger.error('Failed to sync db:', err);
   }
 };
 
 db.syncDB = syncDB;
 
-db.Users = usersModel(dbConnection, Sequelize);
+db.Users = users(dbConnection, Sequelize);
+db.projects = projects(dbConnection, Sequelize);
+db.projectsDocuments = projectDocuments(dbConnection, Sequelize);
+db.milestones = milestones(dbConnection, Sequelize);
+db.disputes = disputes(dbConnection, Sequelize);
 
-Object.keys(dbConnection.models).forEach((modelName) => {
-  if (dbConnection.models[modelName].associate) {
-    dbConnection.models[modelName].associate(dbConnection.models);
+// Set up associations after all models are initialized
+Object.keys(dbConnection).forEach((modelName) => {
+  if (dbConnection[modelName].associate) {
+    dbConnection[modelName].associate(dbConnection);
   }
 });
 
